@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=“UTF-8”>
+    <title>Game of Darts</title>
+    <link rel=“stylesheet” href=“style.css”>
+</head>
+<body>
+    <div id="players-div">
+        <input type="text" name="player-name" id="player-name" placeholder="Add player here...">
+        <button id="add-player-button">Add</button>
+    </div>
+   
+    <div id="chosen-players">
+        <span id="players">Players: </span>
+    </div>
+
+    <button id="start-game-button">START GAME</button>
+
+    <button id="hit">HIT</button>
+    <span id="span"></span>
+
+    <br><br>
+
+    <input type="radio" name="prvi" id="first" checked>
+    <input type="radio" name="prvi" id="second">
+
+    <p id="scoreOne"></p>
+    <p id="scoreTwo"></p>
+
+    <p id="repeatedOne"></p>
+    <p id="repeatedTwo"></p>
+
+
+    <div id="value"></div>
+    <div id="log"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

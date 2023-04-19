@@ -1,3 +1,48 @@
+// dodavanje novog igraca
+
+let newPlayerInput = document.getElementById('player-name');
+let addPlayerButton = document.getElementById('add-player-button');
+let chosenPlayersSpan = document.getElementById('players');
+let numberOfPlayers = 0;
+
+addPlayerButton.addEventListener('click', players);
+
+function players() {
+    let inpValue = newPlayerInput.value;
+    if (inpValue.trim() === '') {
+        confirm('Please add new player.');
+        return;
+      }
+    else if (inpValue.length <= 15) {
+        let br = document.createElement('br');
+        chosenPlayersSpan.append(br);
+        chosenPlayersSpan.innerHTML += inpValue;
+        newPlayerInput.value = '';
+    } else {
+        confirm('Please eneter valid name.');
+    }
+    numberOfPlayers++;
+    if (numberOfPlayers >= 4) {
+        addPlayerButton.disabled = true;
+    }
+}
+
+///// start game ////// 
+
+let startGameButton = document.getElementById('start-game-button');
+startGameButton.addEventListener('click', start);
+let divPlayers = document.getElementById('chosen-players');
+let playersDiv = document.getElementById('players-div');
+
+function start() {
+    if (numberOfPlayers === 1 || numberOfPlayers === 3) {
+        confirm('this game can play 2 or 4 players');
+    }
+    btn.style.display = 'flex';
+}
+
+////// igra ///////
+
 let ballOne = 0;
 let ballTwo = 0;
 
@@ -14,17 +59,18 @@ let repeatedOne = document.getElementById('repeatedOne');
 let repeatedTwo = document.getElementById('repeatedTwo');
 
 let btn = document.getElementById('hit');
+btn.style.display = 'none';
 
-function fistPlayerHit() {
-    const randomHit = Math.floor(Math.random() * 6) + 15;
+function firstPlayerHit() {
+    let randomHit = Math.floor(Math.random() * 6) + 15;
     firstArr.push(randomHit);
            
-    let score = 501;
+    let scoreFirstPlayer = 501;
     
     for (let i = 0; i < firstArr.length; i++) {
-        score -= firstArr[i];
+        scoreFirstPlayer -= firstArr[i];
     }
-    scoreOne.innerText = `${score}`;
+    scoreOne.innerText = `${scoreFirstPlayer}`;
 
     ballOne++;
     if(ballOne >= 3) {
@@ -34,14 +80,14 @@ function fistPlayerHit() {
 }
 
 function secondPlayerHit() {
-    const randomHit = Math.floor(Math.random() * 6) + 15;
+    let randomHit = Math.floor(Math.random() * 6) + 15;
     secondArr.push(randomHit);
         
-    let score = 501;
+    let scoreSecondPlayer = 501;
     for (let i = 0; i < secondArr.length; i++) {
-        score -= secondArr[i];
+        scoreSecondPlayer -= secondArr[i];
     }
-    scoreTwo.innerText = `${score}`;
+    scoreTwo.innerText = `${scoreSecondPlayer}`;
 
     ballTwo++;
     if(ballTwo >= 3) {
@@ -52,7 +98,7 @@ function secondPlayerHit() {
 
 function getHit() {
     if(firstPlayer.checked) {
-        fistPlayerHit();
+        firstPlayerHit();
         let firstRepeatedNums = [];
         for (let i = 0; i < firstArr.length; i++) {
         let num = firstArr[i];
@@ -67,7 +113,6 @@ function getHit() {
               }
               else if (secondArr.filter(n => n === num).length < 3 && firstRepeatedNums[num] > 3) {
                 console.log(`dodaj ${num} u drugi niz`);
-                
               }
             }
         }
@@ -100,3 +145,5 @@ function getHit() {
 }
 
 btn.addEventListener('click', getHit);
+
+
